@@ -1,0 +1,50 @@
+# Portfolio Project TODOs
+
+## Setup & Infrastructure
+- [ ] Initialize project structure (folders for components, assets, styles)
+- [ ] Set up version control (Git repository)
+- [ ] Configure build tools/bundler (Webpack, Vite, etc.)
+- [ ] Set up package.json with dependencies
+
+## Design & Planning
+- [ ] Define portfolio layout and structure
+- [ ] Create wireframes for key pages
+- [ ] Choose color scheme and typography
+- [ ] Plan responsive design breakpoints
+
+## Core Pages
+- [ ] Build homepage/landing page
+- [ ] Create about page
+- [ ] Build projects showcase page
+- [ ] Create contact/contact form page
+- [ ] Add navigation/header component
+
+## Content
+- [ ] Write about section bio
+- [ ] Gather project details and descriptions
+- [ ] Take/prepare project screenshots
+- [ ] Write case studies or project highlights
+
+## Features
+- [ ] Implement responsive navigation
+- [ ] Add project filtering/categories
+- [ ] Create contact form with validation
+- [ ] Set up form submission (email/backend)
+- [ ] Add smooth scrolling and transitions
+
+## Polish & Optimization
+- [ ] Optimize images and assets
+- [ ] Implement lazy loading
+- [ ] Test cross-browser compatibility
+- [ ] Improve accessibility (ARIA, semantic HTML)
+- [ ] SEO optimization
+
+## Deployment
+- [ ] Choose hosting platform (Netlify, Vercel, GitHub Pages)
+- [ ] Set up deployment pipeline
+- [ ] Configure custom domain (if applicable)
+- [ ] Set up analytics
+
+## Maintenance
+- [ ] Plan update schedule for projects
+- [ ] Monitor performance metrics

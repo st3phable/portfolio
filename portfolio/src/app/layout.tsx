@@ -24,10 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${Space_sans.variable} ${Space_monospace.variable} antialiased`}
-      >
+    <html lang="en" className={`${Space_sans.variable} ${Space_monospace.variable}`}>
+      <body className="antialiased">
         {children}
       </body>
     </html>

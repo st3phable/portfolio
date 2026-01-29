@@ -15,7 +15,7 @@ export default function Home() {
 
         {/* 2. Sub-headline */}
         <p className="text-xl md:text-2xl text-white-200 mb-8">
-          I am a computer scientist & neuroscience esearcher.
+          I am a computer scientist & neuroscience researcher.
           My aim is to leverage computer-brain interfaces and related technology in order to find a cure for schizophrenia.
         </p>
 

@@ -1,6 +1,5 @@
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiArrowRight } from 'react-icons/hi';
-import { Analytics } from "@vercel/analytics/next"
 
 export default function Home() {
   return (

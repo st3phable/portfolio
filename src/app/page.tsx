@@ -9,7 +9,7 @@ export default function Home() {
       <div className="text-center max-w-3xl">
 
         {/* 1. Headline */}
-        <h1 className="text-5xl md:text-7xl font-bold font-mono mb-4">
+        <h1 className="text-5xl md:text-5xl font-bold font-mono mb-4">
           Hello! I'm Stephanie
         </h1>
 

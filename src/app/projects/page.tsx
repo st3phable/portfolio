@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
+// IMPORT YOUR NEW COMPONENT
+import NeuralVisualizer from "@/components/NeuralVisualizer";
+
 // 1. The Project Data
 const projects = [
   {
@@ -64,7 +67,7 @@ export default function ProjectDeck() {
       {/* The Carousel Container */}
       <div className="relative w-full max-w-5xl aspect-[4/5] md:aspect-[2/1]">
         
-        {/* Navigation Buttons (Absolute Positioned) */}
+        {/* Navigation Buttons */}
         <button 
             onClick={prevProject}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
@@ -90,36 +93,43 @@ export default function ProjectDeck() {
               className="flex flex-col md:flex-row h-full"
             >
               
-              {/* Left Side: "Visual" Area (Placeholder for now) */}
-              <div className="w-full md:w-1/2 bg-[#f4f4f5] p-8 flex items-center justify-center border-r border-gray-100">
-                {/* This is where your Neural Visualizer Component will live later! */}
-                <div className="text-center">
-                    <div className="text-6xl mb-4 opacity-20">🧠</div>
-                    <p className="text-gray-400 font-mono text-sm">
-                        Visual Preview Coming Soon
-                    </p>
-                </div>
+              {/* Left Side: "Visual" Area */}
+              <div className="w-full md:w-1/2 bg-[#2d1b4e] flex items-center justify-center border-r border-gray-100 overflow-hidden relative">                
+                {/* CONDITIONAL RENDERING: Show Visualizer ONLY for Project 1 */}
+                {projects[currentIndex].id === 1 ? (
+                    <div className="scale-90 md:scale-100 origin-center w-full"> 
+                        <NeuralVisualizer />
+                    </div>
+                ) : (
+                    // Default Placeholder for other projects
+                    <div className="text-center">
+                        <div className="text-6xl mb-4 opacity-20 grayscale">
+                             {/* You can map emojis to project IDs later */}
+                             {projects[currentIndex].id === 2 ? "🐸" : "📚"}
+                        </div>
+                        <p className="text-gray-400 font-mono text-sm">
+                            {projects[currentIndex].title} Preview
+                        </p>
+                    </div>
+                )}
+                
               </div>
 
               {/* Right Side: Content */}
               <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white text-gray-900">
                 
-                {/* Category Tag */}
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#8b55d0] mb-4">
                   {projects[currentIndex].category}
                 </span>
                 
-                {/* Title */}
                 <h2 className="font-sans text-3xl md:text-4xl font-bold mb-6 leading-tight">
                   {projects[currentIndex].title}
                 </h2>
 
-                {/* Description */}
                 <p className="font-sans text-lg text-gray-600 mb-8 leading-relaxed">
                   {projects[currentIndex].description}
                 </p>
 
-                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-10">
                   {projects[currentIndex].tech.map((tech) => (
                     <span 
@@ -131,7 +141,6 @@ export default function ProjectDeck() {
                   ))}
                 </div>
 
-                {/* Links */}
                 <div className="flex gap-4 mt-auto">
                   <a
                     href={projects[currentIndex].link}

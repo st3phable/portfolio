@@ -27,12 +27,14 @@ const NeuralVisualizer = () => {
   };
 
   return (
-    // CARD CONTAINER: Removed 'my-8' to fit inside the parent slide
-    <div className="p-6 bg-[#2d1b4e] rounded-2xl border border-[#8b55d0]/30 shadow-2xl w-full max-w-lg mx-auto">
+    // CHANGE 1: Removed 'max-w-2xl', added 'w-full h-full'
+    // We also changed 'rounded-2xl' to 'rounded-none' or 'rounded-l-3xl' if you want it to match the card corners, 
+    // but keeping it simple with 'w-full' fits best inside the padded parent.
+    <div className="flex flex-col justify-between p-6 bg-[#2d1b4e] border-none shadow-none w-full h-full">
       
       {/* Header */}
-      <div className="mb-6 text-center">
-        <h2 className="text-2xl font-bold text-white font-sans tracking-tight">
+      <div className="mb-4 text-center shrink-0">
+        <h2 className="text-xl md:text-2xl font-bold text-white font-sans tracking-tight">
           Neural Activation
         </h2>
         <p className="text-xs text-[#d8b4fe] mt-1 font-mono uppercase tracking-widest opacity-80">
@@ -40,12 +42,14 @@ const NeuralVisualizer = () => {
         </p>
       </div>
 
-      {/* The Visual Grid - Slightly smaller nodes (w-10) to prevent overflow */}
-      <div className="grid grid-cols-5 gap-3 mb-6 justify-items-center">
+      {/* The Visual Grid */}
+      {/* CHANGE 2: 'gap-4' -> 'gap-2' or 'gap-4' depending on space. Added 'flex-grow' to center it vertically */}
+      <div className="grid grid-cols-5 gap-3 sm:gap-6 justify-items-center items-center my-4 flex-grow content-center">
         {activations.map((val, i) => (
           <div 
             key={i}
-            className="w-10 h-10 rounded-full transition-all duration-200 ease-in-out border border-white/10"
+            // CHANGE 3: Dynamic sizing 'w-full aspect-square' so it stretches with the card width
+            className="w-full aspect-square max-w-[3rem] rounded-full transition-all duration-200 ease-in-out border border-white/10"
             style={{
               backgroundColor: `rgb(255, 255, 255)`, 
               opacity: Math.min(val / 100, 1),      
@@ -56,7 +60,7 @@ const NeuralVisualizer = () => {
       </div>
 
       {/* The Controls */}
-      <div className="space-y-4 bg-[#1a0f2e] p-4 rounded-xl border border-[#8b55d0]/20">
+      <div className="space-y-4 bg-[#1a0f2e] p-4 rounded-xl border border-[#8b55d0]/20 shrink-0">
         
         {/* Slider 1: Dopamine */}
         <div>

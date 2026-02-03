@@ -9,20 +9,20 @@ export default function Home() {
       <div className="text-center max-w-3xl">
 
         {/* 1. Headline */}
-        <h1 className="text-5xl md:text-7xl --font-bold mb-4">
+        <h1 className="text-5xl md:text-7xl font-bold font-mono mb-4">
           Hello! I'm Stephanie
         </h1>
 
         {/* 2. Sub-headline */}
         <p className="text-xl md:text-2xl text-white-200 mb-8">
-          I am a computer scientist & neuroscience esearcher.
+          I am a computer scientist & neuroscience researcher.
           My aim is to leverage computer-brain interfaces and related technology in order to find a cure for schizophrenia.
         </p>
 
         {/* 3. Call-to-Action (CTA) Button */}
         <a
           href="/projects" // This will link to src/app/projects/page.tsx
-          className="inline-flex items-center gap-2 bg-[#8b55d0] text-white --font-bold py-3 px-8 rounded-full text-lg hover:bg-[#7e2eea] transition-colors duration-300"
+          className="inline-flex items-center gap-2 bg-[#8b55d0] text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-[#7e2eea] transition-colors duration-300"
         >
           View My Work
           <HiArrowRight/>

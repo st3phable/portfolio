@@ -5,7 +5,7 @@ const NeuralVisualizer = () => {
   const [dopamine, setDopamine] = useState(1.5); 
   const [gaba, setGaba] = useState(20);          
   
-  const neuronCount = 25;
+  const neuronCount = 12;
   const [activations, setActivations] = useState(new Array(neuronCount).fill(0));
 
   useEffect(() => {
@@ -27,13 +27,10 @@ const NeuralVisualizer = () => {
   };
 
   return (
-    // CHANGE 1: Removed 'max-w-2xl', added 'w-full h-full'
-    // We also changed 'rounded-2xl' to 'rounded-none' or 'rounded-l-3xl' if you want it to match the card corners, 
-    // but keeping it simple with 'w-full' fits best inside the padded parent.
-    <div className="flex flex-col justify-between p-6 bg-[#2d1b4e] border-none shadow-none w-full h-full">
+    <div className="flex flex-col justify-between p-6 bg-[#2d1b4e] border-none shadow-none w-full h-full overflow-hidden relative">
       
       {/* Header */}
-      <div className="mb-4 text-center shrink-0">
+      <div className="mb-4 text-center shrink-0 z-10 relative">
         <h2 className="text-xl md:text-2xl font-bold text-white font-sans tracking-tight">
           Neural Activation
         </h2>
@@ -42,14 +39,13 @@ const NeuralVisualizer = () => {
         </p>
       </div>
 
-      {/* The Visual Grid */}
-      {/* CHANGE 2: 'gap-4' -> 'gap-2' or 'gap-4' depending on space. Added 'flex-grow' to center it vertically */}
-      <div className="grid grid-cols-5 gap-3 sm:gap-6 justify-items-center items-center my-4 flex-grow content-center">
+      {/* The Visual Grid 
+      */}
+      <div className="grid grid-cols-4 gap-4 justify-items-center items-center flex-grow content-center w-full max-w-[20rem] mx-auto z-0">
         {activations.map((val, i) => (
           <div 
             key={i}
-            // CHANGE 3: Dynamic sizing 'w-full aspect-square' so it stretches with the card width
-            className="w-full aspect-square max-w-[3rem] rounded-full transition-all duration-200 ease-in-out border border-white/10"
+            className="w-full aspect-square rounded-full transition-all duration-200 ease-in-out border border-white/10"
             style={{
               backgroundColor: `rgb(255, 255, 255)`, 
               opacity: Math.min(val / 100, 1),      
@@ -60,7 +56,7 @@ const NeuralVisualizer = () => {
       </div>
 
       {/* The Controls */}
-      <div className="space-y-4 bg-[#1a0f2e] p-4 rounded-xl border border-[#8b55d0]/20 shrink-0">
+      <div className="space-y-4 bg-[#1a0f2e] p-4 rounded-xl border border-[#8b55d0]/20 shrink-0 z-10 relative">
         
         {/* Slider 1: Dopamine */}
         <div>

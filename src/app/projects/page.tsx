@@ -57,7 +57,7 @@ export default function ProjectDeck() {
       {/* Header */}
       <div className="mb-12 text-center max-w-2xl">
         <h1 className="text-4xl md:text-6xl font-sans font-bold mb-4 tracking-tight">
-          Selected Works
+          My projects
         </h1>
         <p className="text-lg md:text-xl text-white/90 font-sans">
           Bridging Computer Science & Psychology.
@@ -97,7 +97,7 @@ export default function ProjectDeck() {
               <div className="w-full md:w-1/2 bg-[#2d1b4e] flex items-center justify-center border-r border-gray-100 overflow-hidden relative">                
                 {/* CONDITIONAL RENDERING: Show Visualizer ONLY for Project 1 */}
                 {projects[currentIndex].id === 1 ? (
-                    <div className="scale-90 md:scale-100 origin-center w-full"> 
+                    <div className="w-full h-full"> 
                         <NeuralVisualizer />
                     </div>
                 ) : (

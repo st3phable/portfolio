@@ -1,25 +1,51 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 
+/**
+ * NEURAL VISUALIZER COMPONENT
+ * ------------------------------------------------------------------
+ * A computational psychiatry simulation that models the Excitatory/Inhibitory (E/I) 
+ * balance of a neural circuit.
+ * * - Dopamine acts as the "Gain" (signal amplification).
+ * - GABA acts as the "Threshold" (signal dampening/subtraction).
+ * * The visualizer uses a 4x3 grid (12 neurons) to represent a localized cortical patch.
+ */
+
 const NeuralVisualizer = () => {
+  // --- STATE MANAGEMENT ---
+  
+  // Gain Parameter (Excitatory): Multiplies the raw input signal.
+  // Higher values simulate hyper-dopaminergic states (e.g., Mania).
   const [dopamine, setDopamine] = useState(1.5); 
+
+  // Threshold Parameter (Inhibitory): Subtracts from the potential.
+  // Higher values simulate strong GABAergic inhibition (e.g., Sedation).
   const [gaba, setGaba] = useState(20);          
   
+  // Grid Configuration:
+  // We use 12 neurons (4x3 layout) to fit rectangular desktop screens without overflow.
   const neuronCount = 12;
   const [activations, setActivations] = useState(new Array(neuronCount).fill(0));
 
+// --- SIMULATION LOOP ---
+  // This effect runs every 200ms to update the firing state of the neurons.
   useEffect(() => {
     const interval = setInterval(() => {
         setActivations(prev => prev.map(() => {
+          // 1. Generate stochastic noise (random sensory input 0-100)
             const rawInput = Math.random() * 100; 
+          // 2. Apply the Neural Transfer Function: Output = (Input * Gain) - Inhibition  
             let netPotential = (rawInput * dopamine) - gaba; 
+            // 3. Rectification (ReLU): Neurons cannot have negative firing rates.
             return Math.max(0, netPotential);
         }));
     }, 200); 
-
+    // Cleanup interval on unmount to prevent memory leaks
     return () => clearInterval(interval);
   }, [dopamine, gaba]);
 
+  // --- DIAGNOSTIC ENGINE ---
+  // Classifies the network state based on the E/I parameters.
   const getDiagnosis = () => {
     if (dopamine > 2.5 && gaba < 15) return "STATUS: HYPER-ACTIVE (MANIA)";
     if (dopamine < 0.8 || gaba > 60) return "STATUS: HYPO-ACTIVE (SEDATION)";
@@ -27,6 +53,10 @@ const NeuralVisualizer = () => {
   };
 
   return (
+    // MAIN CONTAINER
+    // h-full & w-full: Fills the parent card.
+    // overflow-hidden: Critical fix to prevent child elements from breaking the layout.
+    // relative: Establishes a stacking context for z-index.
     <div className="flex flex-col justify-between p-6 bg-[#2d1b4e] border-none shadow-none w-full h-full overflow-hidden relative">
       
       {/* Header */}
@@ -45,6 +75,9 @@ const NeuralVisualizer = () => {
         {activations.map((val, i) => (
           <div 
             key={i}
+            // Neuron Styling:
+            // aspect-square: Ensures perfectly round circles regardless of width.
+            // opacity: Maps the firing rate directly to visual brightness.
             className="w-full aspect-square rounded-full transition-all duration-200 ease-in-out border border-white/10"
             style={{
               backgroundColor: `rgb(255, 255, 255)`, 
@@ -94,7 +127,8 @@ const NeuralVisualizer = () => {
           />
         </div>
 
-        {/* Dynamic Status */}
+        {/* Dynamic Status 
+            Changes color based on diagnosis*/}
         <div className="pt-2 border-t border-white/10 mt-2">
              <p className={`text-center font-mono font-bold text-xs tracking-widest transition-colors duration-300 ${
                  getDiagnosis().includes("HOMEOSTASIS") ? "text-[#a477e1]" : 
